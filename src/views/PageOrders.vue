@@ -77,7 +77,7 @@ export default {
 }
 
 .logo-proposta {
-  margin-right: 10px;
+  margin-right: 7px;
   color: #00ad8c;
 }
 </style>
