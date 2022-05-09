@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <PageOrders />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PageOrders from './views/PageOrders.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      message: 'Hello World',
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    PageOrders,
+  },
+};
 </script>
 
 <style>
