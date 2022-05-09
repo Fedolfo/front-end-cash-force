@@ -1,7 +1,12 @@
 {
-  "parser": "@babel/eslint-parser",
+  "root": true,
+  "extends": [
+    "plugin:vue/essential"
+  ],
+  "parser": "vue-eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 11,
+    "ecmaVersion": 2020,
+    "sourceType": "module",
     "requireConfigFile": false
   },
   "plugins": [
