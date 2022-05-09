@@ -1,22 +1,20 @@
 <template>
   <div>
     <div class="sider-fornecedor">
-      <div class="logo-cash-force">
-        <img src="../assets/Logo.svg" alt="logo" />
+      <div class="sider-menu">
+        <div class="logo-cash-force">
+          <img src="../assets/Logo.svg" alt="logo" />
+        </div>
+        <div class="menu-button">
+          <h5 class="menu-name">
+            <img src="../assets/proposta.svg" alt="proposta" />
+            Notas fiscais
+          </h5>
+        </div>
       </div>
-      <div class="menu-button">
-        <h5 class="menu-name">
-          <img
-            src="../assets/proposta.svg"
-            alt="proposta"
-            class="logo-proposta"
-          />
-          Notas fiscais
-        </h5>
+      <div>
+        <TableOrders />
       </div>
-    </div>
-    <div>
-      <TableOrders />
     </div>
   </div>
 </template>
@@ -40,34 +38,34 @@ export default {
   padding: 0;
 }
 
-.menu-button {
-  border-bottom: #00ad8c solid 1px;
-  padding-bottom: 10px;
-  width: 100%;
-}
-
 .sider-fornecedor {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
-  width: 288px;
-  height: 144px;
+  height: 100vh;
+  width: 18em;
+}
+
+.menu-button {
+  padding-bottom: 26px;
+  margin-top: 48px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 3px 0 0.1px 0 #00ad8c;
 }
 
 .logo-cash-force {
-  position: absolute;
-  width: 160px;
-  height: 30px;
-  left: 24px;
-  top: 25px;
+  margin-top: 55px;
+  width: 10em;
+  height: 1.875em;
 }
 
 .menu-name {
   display: flex;
   align-items: center;
-  margin-top: 30px;
-  margin-left: 30px;
+  margin-top: 1.875em;
+  margin-left: 1.875em;
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 500;
@@ -76,8 +74,7 @@ export default {
   color: #00ad8c;
 }
 
-.logo-proposta {
+.menu-name img {
   margin-right: 7px;
-  color: #00ad8c;
 }
 </style>

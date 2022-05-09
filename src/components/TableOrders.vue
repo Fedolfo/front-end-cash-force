@@ -60,9 +60,9 @@ export default {
 .container-conteudo {
   display: flex;
   flex-direction: column;
-  align-items: center;
   align-items: flex-start;
-  margin-left: 400px;
+  margin-top: 155px;
+  margin-left: 40px;
 }
 
 .container-conteudo .container-text-proposta h3 {
@@ -82,7 +82,6 @@ export default {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-
   color: #727d94;
 }
 
@@ -155,6 +154,7 @@ export default {
   height: 32px;
   border: 1px solid #cad3ff;
   border-radius: 24px;
+  color: #727d94;
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 700;
