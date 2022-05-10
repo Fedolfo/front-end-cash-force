@@ -1,5 +1,3 @@
-# front-end-cash-force
-
 ### Projeto Front-end-Cash-force
 
 ## Sobre o projeto
