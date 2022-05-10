@@ -26,14 +26,26 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="container-table-row">
-                <td>1</td>
-                <td>01/01/2020</td>
-                <td>R$ 1.000,00</td>
-                <td>R$ 1.000,00</td>
-                <td>R$ 1.000,00</td>
-                <td>R$ 1.000,00</td>
-                <td><button type="button">Dados do cedente</button></td>
+              <tr
+                class="container-table-row"
+                v-for="(order, index) in orders"
+                :key="index"
+              >
+                <td>{{ order.orderNfId }}</td>
+                <td>{{ order.buyer.name }}</td>
+                <td>{{ order.provider.name }}</td>
+                <td>{{ formatedData(order.emissionDate) }}</td>
+                <td class="value-positive">
+                  {{ formatterValue(order.value) }}
+                </td>
+                <td>
+                  {{ receiptStatus(order.orderStatusBuyer) }}
+                </td>
+                <td>
+                  <button type="button">
+                    {{ order.provider.tradingName }}
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -44,8 +56,78 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+const baseURL = 'http://localhost:3001/';
+
+const api = axios.create({ baseURL });
+
 export default {
   name: 'TableOrders',
+
+  data() {
+    return {
+      orders: [],
+    };
+  },
+
+  mounted() {
+    this.getOrders();
+  },
+
+  methods: {
+    formatedData(dataUnformated) {
+      const data = new Date(dataUnformated);
+
+      const day = data.getDay() + 1;
+      const month = data.getMonth() + 1;
+      const yaer = data.getFullYear();
+
+      const NUMBERTEN = 10;
+
+      return `${day > NUMBERTEN ? day : `0${day}`}/${
+        month > NUMBERTEN ? month : `${month}`
+      }/${yaer}`;
+    },
+
+    receiptStatus(status) {
+      switch (status) {
+        case '0':
+          return 'Pendente de confirmação';
+        case '1':
+          return 'Pedido confirmado';
+        case '2':
+          return 'Não reconhece o pedido';
+        case '3':
+          return 'Mercadoria não recebida';
+        case '4':
+          return 'Recebida com avaria';
+        case '5':
+          return 'Devolvida';
+        case '6':
+          return 'Recebida com devolução parcial';
+        case '7':
+          return 'Recebida e confirmada';
+        case '8':
+          return 'Pagamento Autorizado';
+        default:
+          return 'Não definido';
+      }
+    },
+
+    async getOrders() {
+      const response = await api.get('/orders');
+      this.orders = response.data;
+    },
+
+    formatterValue(value) {
+      return Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2,
+      }).format(value);
+    },
+  },
 };
 </script>
 
@@ -62,7 +144,11 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   margin-top: 155px;
-  margin-left: 40px;
+  margin-left: 80px;
+}
+
+.container-conteudo .container-text-proposta {
+  margin-left: 25px;
 }
 
 .container-conteudo .container-text-proposta h3 {
@@ -96,24 +182,8 @@ export default {
   align-items: center;
 }
 
-.container-board {
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-}
-
-.header-board {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
 .container-table {
+  width: 100%;
   border-spacing: 0 0.8rem;
 }
 
@@ -132,7 +202,6 @@ export default {
   font-size: 12px;
   line-height: 16px;
   text-transform: uppercase;
-
   padding: 0 0.3rem;
 }
 
@@ -158,7 +227,10 @@ export default {
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 11px;
+}
+
+.container-table-row .value-positive {
+  color: #00ad8c;
 }
 </style>
