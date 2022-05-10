@@ -27,13 +27,16 @@ Desenvolvido para consumir uma API simulado de ERP [back-end](https://github.com
 ```bash
   cd front-end-cash-force
 ```
-3. Suba o containêr
+3. Suba o containêr do [back-end](https://github.com/Fedolfo/back-end-cash-force)
+
+4. Suba o containêr do front-end
 ```bash
   docker build -t vuejs-cash-force
 
   docker run -it -p 8080:80 --rm --name vuejs-cash-force-app-1 vuejs-cash-force
 ```
-4. Para acessar a aplicação
+
+5. Para acessar a aplicação
 ```bash
   front-end: localhost:8080
 ```
