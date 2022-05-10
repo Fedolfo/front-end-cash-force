@@ -35,7 +35,7 @@ Desenvolvido para consumir uma API simulado de ERP [back-end](https://github.com
 
   docker run -it -p 8080:80 --rm --name vuejs-cash-force-app-1 vuejs-cash-force
 ```
-4. Para acessar as aplicação
+4. Para acessar a aplicação
 ```bash
   front-end: localhost:8080
 ```
